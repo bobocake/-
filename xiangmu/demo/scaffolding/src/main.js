@@ -15,7 +15,7 @@ import 'mint-ui/lib/style.min.css';
 //通过Vue.use()方法将Mint UI注册为Vue的插件
 Vue.use(MintUI);
 
-axios.defaults.baseURL = 'http://127.0.0.1:3000'
+axios.defaults.baseURL = 'http://www.bobocake.xyz:8081/houtai'
 Vue.prototype.axios = axios;
 
 Vue.prototype.moment = moment;

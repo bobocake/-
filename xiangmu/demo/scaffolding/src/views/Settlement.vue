@@ -14,8 +14,8 @@
           </div>
           <!-- 收货人信息 -->
           <div >
-              <b>郭亮亮</b>
-                <b class="phone">15555555555</b>
+              <b>{{this.$store.state.userInfo.uname}}</b>
+                <b class="phone">130****0581</b>
               <p class="p">北京北京市通州区马驹桥镇环科中路2号院29号楼员宿公寓;北京亦庄马驹桥店;</p>
               <a class="a">收货不便时，可选择暂存服务</a>
           </div>
@@ -27,26 +27,41 @@
           <!-- 店铺名字 -->
           <div class="bobo">
             <div class="bobo-tao">
-                <img class="img-tao" src="../assets/sige/tt.jpg" >
+                <img class="img-tao" src="../assets/sige/tt.png" >
                 <p class="bobo-p">啵啵开了一家店</p>
             </div>
           </div>
           <!-- 购买商品 -->
       <div class="tou">
           <div class="dangao">
-              <img class="dangaos" src="../assets/bobo/list_15.jpg" alt="">
+              <img class="dangaos" src="../../public/img/product/1.jpg" alt="">
           </div>
           <div class="tou-text">
                   <div class="tou-text-p">
-                    <p class="tou-p">朵颐HD欧式粗陶水果沙拉碗斗笠碗家用复古创意陶瓷大碗大号拉面碗</p>
-                    <p class="tou-pp">颜色分类:HD斗笠碗;</p>
+                    <p class="tou-p">往后余生相濡以沫</p>
+                    <p class="tou-pp">【鲜奶蛋糕】</p>
                   </div>
                   <div class="span">
-                    <p class="span-p">￥:36.00</p>
+                    <p class="span-p">￥: 199.00</p>
                     <p class="span-pp">*1</p>
                   </div>
           </div>
-      </div>      
+      </div> 
+      <div class="tou">
+          <div class="dangao">
+              <img class="dangaos" src="../../public/img/product/1.jpg" alt="">
+          </div>
+          <div class="tou-text">
+                  <div class="tou-text-p">
+                    <p class="tou-p">蜜桃星球</p>
+                    <p class="tou-pp">【水果蛋糕】</p>
+                  </div>
+                  <div class="span">
+                    <p class="span-p">￥: 67.00</p>
+                    <p class="span-pp">*1</p>
+                  </div>
+          </div>
+      </div>           
          
           <!-- 配送方式 -->
           <div class="peisong">
@@ -68,14 +83,14 @@
               <div class="subtotal-w"></div>
              
               <p class="subtotal-p">小计：</p>
-              <p class="subtotal-pp">￥44.00</p>
+              <p class="subtotal-pp">￥274.00</p>
              
           </div>
       
         <!-- 立即结算 -->
       <div class="foot">
           <b class="foot-b">合计：</b>
-          <p class="foot-p">￥44.00</p>
+          <p class="foot-p">￥274.00</p>
           <button class="foot-but">立即结算</button>
       </div>
     </div>

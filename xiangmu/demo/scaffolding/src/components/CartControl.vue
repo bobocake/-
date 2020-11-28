@@ -6,6 +6,9 @@
       ></div>
     </transition>
     <div class="cart-count">
+      <router-link to="/shopcar" class="emm">
+        <div class="abc">加入购物车</div>
+      </router-link>
       <button class="ma" @click="proNum>1?proNum--:''">-</button>
 			<span class="mb">{{proNum}}</span>
 			<button class="mc"  @click="proNum++">+</button>
@@ -38,6 +41,16 @@
   </div>
 </template>
 <style>
+.emm{
+  color: #000;
+}
+.abc{
+  background-color: #c4c4c4;
+  border-radius: 45%;
+  width: 68px;
+  margin-left: -5px;
+  margin-bottom: 4px;
+}
 .mb{
     width: 12px;
     height: 13px;

@@ -9,41 +9,34 @@
                 <span>您好,{{this.$store.state.userInfo.uname}}</span>
             </div>
         </mt-header>
-    <div >
-      <div class="l" >
-        <button class="i" @click="handle">保存</button>
-        <span >请完善个人信息</span>
-      </div>
-      <div class="kx"></div>
+        <div>
+        <div class="l">
+            
+              <router-link to="/Message">
+              <button class="i">
+              修改
+               </button>
+              </router-link>
+           
+            <button class="i2" @click="handle">查询</button>
+        </div>
+        <div class="kx"></div>
+        <div class="a">
+          <div class="b0">
             <mt-field
               label="用户名"
               placeholder="请输入用户名"
               type="text"
               v-model="uname"
+
             >
            </mt-field>
-           <mt-field
-              label="昵称"
-              placeholder="请输入昵称"
-              type="text"
-              v-model="user_name"
-            >
-            </mt-field>
-            <mt-field
-              label="联系方式"
-              placeholder="请输入联系方式"
-              type="text"
-              v-model="phone"
-            >
-            </mt-field>
-            <mt-field
-              label="地址"
-              placeholder="请输入收货地址"
-              type="text"
-              v-model="email"
-            >
-            </mt-field>
-    </div> 
+           </div>
+          <div class="b1">昵称 :  {{this.user_name}}</div>
+          <div class="b2">手机号 :  {{this.phone}}</div>
+          <div class="b3">收货地址 :  {{this.email}}</div>
+        </div>
+    </div>
         <div class="kx"></div>
         <div class="mm">
             <mt-navbar v-model="active">
@@ -58,7 +51,7 @@
                 <div class="articleItem-wrapper">
                 <!-- 图像开始  -->
                 <div class="articleImg">
-                  <img src="../../public/img/product/1.jpg" alt="">
+                  <img src="../assets/bobo/list_15.jpg" alt="">
                 </div>
                 <!-- 图像结束 -->
                 <div>
@@ -100,7 +93,7 @@
                   2020.11.04
                 </div>
                 <div class="content">
-                  用勺子bai轻轻挖下一块带着草莓奶油的蛋糕，放入口中，根本不用嚼，含在口中一会儿就化掉了，唇齿间留下一丝淡淡的清香。细细回味，奶油浓浓的气息回旋在口中，甜甜的，香香的。
+                  中午想吃点甜点，所以选择了这家的蛋糕，抱着试试的想法下了单，没想到送来的时候尺寸很大并且味道也很好，两个人都没有吃完。
                 </div>
                 <div class="b33">
                 <div class="pjt">
@@ -126,6 +119,9 @@
 .mint-header{
   background-color:rgb(148, 143, 143);
 }
+.mt-field{
+  height: -20px;
+}
 .shortcut a {
   color: #fff;
   padding-left: 20px;
@@ -145,6 +141,9 @@
     margin-left: 5px ;
     margin-bottom: 7px;
 }
+.i2{
+  margin-left: 280px;
+}
 .l span{
   margin-left: 225px;
   font-size: 16px;
@@ -153,16 +152,16 @@
 }
 .a{
 width: 93%;
-margin-top: 10px;
+margin-top: 3px;
 margin-left: 12px;
 margin-bottom: 7px;
 color: black;
 }
-.b1,.b2{
-  margin-top: 4px;
-  margin-bottom: 6px;
+.b0{
+  /* margin-top: 4px;
+  margin-bottom: 6px; */
   border-bottom:1px solid #999; 
-  height: 22px;
+  /* height: 35px;
   font-size: 14px;
   overflow: hidden;
   font-weight: 400;
@@ -170,17 +169,31 @@ color: black;
   line-height: 21px;
   letter-spacing: normal;
   color: #444;
+  font-family:"微软雅黑" */
+}
+.b1,.b2{
+  margin-top: 4px;
+  margin-bottom: 6px;
+  border-bottom:1px solid #999; 
+  height: 32px;
+  font-size: 15.5px;
+  overflow: hidden;
+  font-weight: 400;
+  text-overflow: ellipsis;
+  line-height: 30px;
+  letter-spacing: normal;
+  color: #444;
   font-family:"微软雅黑"
 }
 .b3{
    margin-top: 4px;
   margin-bottom: 6px;
-  height: 22px;
-  font-size: 14px;
+  height: 32px;
+  font-size: 15.5px;
   overflow: hidden;
   font-weight: 400;
   text-overflow: ellipsis;
-  line-height: 21px;
+  line-height: 30px;
   letter-spacing: normal;
   color: #444;
   font-family:"华文行楷"
@@ -244,6 +257,8 @@ color: black;
   letter-spacing: normal;
   text-align: center;
 }
+
+
 .q{
   margin-left: 150px;
   margin-top: -30px;
@@ -355,28 +370,41 @@ export default {
         }
     },
     methods: {
-      handle(){
-      //会引发短路现象
-        // //现在要发送相关的用户名、密码到WEB服务器
-        let object = {
-          uname:this.uname,
-          phone:this.phone,
-          user_name:this.user_name,
-          email:this.email
-        }
-        this.axios.put('/message',this.qs.stringify(object)).then(res=>{
-            //代表用户修改成功
-            if(res.data.code == 1){
-              this.$router.push('/me');
-            } else {
-              //弹出提示框
-              this.$messagebox("提示信息","保存失败--用户名错误");
-            }
-
-        });
-      },
          //this.$store.dispatch('message_actions',this.qs.stringify(object));
+      handle(){
+                  let object = {
+                    uname:this.uname
+                  }
+            //通过axios工具 //通过axios工具向web服务器发送请求
+        this.axios.post('/me',this.qs.stringify(object)).then(res=>{
+           if(res.data.code == 1){
+             this.user_name=res.data.results.user_name;
+            this.phone=res.data.results.phone;
+            this.email=res.data.results.email;
+           }
+        
+        });
+        
 
+      },
+    //    checkUname() {
+    //   let uname = this.uname;
+    //   let unameReg = /^[0-9a-zA-Z]{6,12}$/;
+    //   if (unameReg.test(uname)) {
+    //     return true;
+    //   } else {
+    //     // 显示短消息提示框(简捷写法)
+    //     // this.$toast("用户名格式或内容错误");
+    //     // 显示短消息提示框(标准写法)
+    //     this.$toast({
+    //       message: "用户名格式或内容错误",
+    //       position: "top",
+    //       duration: 5000,
+    //     });
+    //     //终止函数的执行
+    //     return false;
+    //   }
+    // },
     //用户注销
     logout(){
       this.$store.commit('logout_mutations');
@@ -384,5 +412,6 @@ export default {
     },
     
   },
+
 }
 </script>

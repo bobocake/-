@@ -13,7 +13,8 @@
     <div class="main">
       <mt-tab-container v-model="tab">
          <mt-tab-container-item id="ab">
-          
+           <div style="height:500px"> <Goods></Goods></div>
+           
         </mt-tab-container-item>
         <mt-tab-container-item id="cd">
           <div class="mmn"><Ratings></Ratings></div>
@@ -24,13 +25,13 @@
             <!-- v-if="food.rating" -->
             <div class="like-ratio" >
               <img class="p" src="../assets/sige/p.png" alt="">
-              <span class="title">评价(1)</span>
+              <span class="title">评价</span>
             </div>
             <!-- v-if="food.rating" -->
           </div>
           <div class="kx"></div>
             <!-- v-if="food.rating" -->
-          <ul class="rating-content" >
+          <ul class="rating-content" v-for="(rating,index) of ratings " :key="index">
             <!-- v-for="(comment,index) in food.rating.comment_list"
               :key="index" -->
             <li class="comment-item">
@@ -46,32 +47,7 @@
                   2020.11.04
                 </div>
                 <div class="content">
-                  味道超级好，价格也实惠，一定会回购的。
-                </div>
-              </div>
-            </li>
-          </ul>
-          <ul class="rating-content" >
-            <!-- v-for="(comment,index) in food.rating.comment_list"
-              :key="index" -->
-            <li class="comment-item">
-              <div class="comment-header">
-                <!-- v-if="!comment.user_icon" -->
-                <img src="../assets/common/me_disabled.png" />
-              </div>
-              <div class="comment-main">
-                <div class="user">
-                  匿名用户
-                </div>
-                <div class="time">
-                  2020.11.04
-                </div>
-                <div class="content">
-                  味道超级好，价格也实惠，一定会回购的。
-                </div>
-                <div class="pjt">
-                  <img src="../assets/bobo/list_2.jpg" alt="">
-                  <img src="../assets/bobo/list_3.jpg" alt="">
+                  {{rating.rat_ratings}}
                 </div>
               </div>
             </li>
@@ -340,6 +316,8 @@
 <script>
 import Header from '../components/Header'
 import Ratings from '../components/Ratings';
+import Goods from '../components/Goods';
+
 export default {
   data() {
     return {
@@ -349,11 +327,18 @@ export default {
       tab: "ab",
       // 默认被选定的底部选项卡
       selectedTab: "index",
+      ratings:[]
     };
   },
   components:{
     Header:Header,
-    Ratings:Ratings
+    Ratings:Ratings,
+    Goods:Goods
+  },
+  mounted(){
+    this.axios.get('/ratings').then(res=>{
+      this.ratings=res.data.results;
+    })
   },
   methods: {
 

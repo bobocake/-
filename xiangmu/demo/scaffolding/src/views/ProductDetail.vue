@@ -5,7 +5,7 @@
       <div class="food-wrapper">
         <div class="food-content">
           <div class="img-wrapper">
-            <img class="food-img" src="../assets/bobo/list15.jpg"/>
+            <img class="food-img" :src="foods.cake_image"/>
             <!-- @click="closeView" -->
             <router-link slot="left" to="/">
                 <mt-button class="close-bt" icon="back"></mt-button>
@@ -13,19 +13,19 @@
             <router-link slot="right" to="/shopcar">
                 <img class="share-bt" src="../assets/common/cart_enabled.png"/>
             </router-link>
-            <router-link slot="right" to="/">
-                <img class="more-bt" src="../assets/common/index_enabled.png"/>
+            <router-link slot="right" to="/historys">
+                <img class="more-bt" src="../assets/sige/xx.png"/>
             </router-link>
           </div>
           <div class="content-wrapper">
-            <h3 class="name">【人气爆棚】</h3>
-            <p class="saled">草莓格格蛋糕</p>
+            <h3 class="name">{{foods.lname}}</h3>
+            <p class="saled">{{foods.details}}</p>
 
             <!-- v-show="food.product_label_picture" -->
 
-            <img class="product"  src="../assets/bobo/list_15.jpg"/>    
+            <img class="product"  :src="foods.cake_image"/>    
             <p class="price">
-              <span class="text">￥46</span>
+              <span class="text">￥{{foods.price}}</span>
               <span class="unit">/1份</span>
             </p>
             <div class="cartcontrol-wrapper">
@@ -41,12 +41,12 @@
             <!-- v-if="food.rating" -->
             <div class="like-ratio" >
                 <img class="p" src="../assets/sige/p.png" alt="">
-              <span class="title">评价(1)</span>
+              <span class="title">评价</span>
             </div>
             <!-- v-if="food.rating" -->
           </div>
             <!-- v-if="food.rating" -->
-          <ul class="rating-content" >
+          <ul class="rating-content" v-for="(item,index) of rating" :key="index">
             <!-- v-for="(comment,index) in food.rating.comment_list"
               :key="index" -->
             <li class="comment-item">
@@ -62,7 +62,7 @@
                   2020.11.04
                 </div>
                 <div class="content">
-                  味道超级好，价格也实惠，一定会回购的。
+                  {{item.rat_ratings}}
                 </div>
               </div>
             </li>
@@ -79,40 +79,32 @@
   import Vue from "vue"
 
   export default {
-    // data() {
-    //   return {
-    //     showFlag: false
-    //   }
-    // },
+    data() {
+      return {
+      foods:{},
+      rating:[]
+      }
+    },
     props: {
       food: {
         type: Object
       }
     },
-    // methods: {
-    //   addProduct() {
-    //     if (!this.food.count) {
-    //       Vue.set(this.food, "count", 1)
-    //     }
-    //   },
-    //   showView() {
-    //     this.showFlag = true
-    //     this.$nextTick(() => {
-    //       if (!this.scroll) {
-    //         this.scroll = new BScroll(this.$refs.foodView, {
-    //           click: true
-    //         })
-    //       } else {
-    //         this.scroll.refresh()
-    //       }
-    //     })
-    //   },
-    //   closeView() {
-    //     this.showFlag = false
-    //   }
+    mounted(){
+    //获取URL的参数
+      let lid = this.$route.params.lid;
+       // 向服务器发送请求,以获取数据
+      this.axios.get('/productdetail?lid='+ lid).then(res=>{
+        this.foods = res.data.results;
+        this.foods.cake_image = require('../../public/img/product/' + this.foods.cake_image);
+        // console.log(res.data.results);
+    });
 
-
-    // },
+    //获取蛋糕的评论
+    this.axios.get('/rating?lid='+lid).then(res=>{
+      this.rating=res.data.results;
+    })
+    },
     components: {
       CartControl: CartControl,
       Split: Split
@@ -122,7 +114,7 @@
 </script>
 <style>
   .food {
-    position: fixed;
+    position: relative;
     left: 0;
     top: 0;
     bottom: 51px;
@@ -142,7 +134,7 @@
   .food .food-wrapper .food-content .img-wrapper {
     position: relative;
     width: 100%;
-    height: 170px;
+    height: 200px;
   }
 
   .food .food-wrapper .food-content .img-wrapper .food-img {
@@ -198,12 +190,13 @@
   .food .food-wrapper .food-content .content-wrapper .saled {
     font-size: 13px;
     color: #9d9d9d;
+    height:50px;
     margin-bottom: 6px;
     margin-left: 6px;
   }
 
   .food .food-wrapper .food-content .content-wrapper .product {
-    height: 15px;
+    height: 30px;
     margin-bottom: 16px;
     margin-left: 20px;
   }
@@ -231,6 +224,10 @@
 
   .food .food-wrapper .rating-wrapper {
     padding-left: 16px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
   }
 
   .food .food-wrapper .rating-wrapper .rating-title {

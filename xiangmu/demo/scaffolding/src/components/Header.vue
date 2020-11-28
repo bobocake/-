@@ -4,19 +4,29 @@
     <!-- 顶部通栏 开始 -->
       <mt-header title="啵啵开了家店">
       <div slot="left" class="shortcut" v-if="this.$store.state.isLogined == 1">
-        <span>您好,{{this.$store.state.userInfo.username}}</span>
+        <span>您好,{{this.$store.state.userInfo.uname}}</span>
       </div>
       <div slot="left" class="shortcut" v-else>
         <router-link to="/register">注册  </router-link>
         <router-link to="/login">  登录</router-link>
       </div>
       <div slot="right" class="shortcut" v-if="this.$store.state.isLogined == 1">
-        <router-link to="/Message">
+       <div v-if="this.$store.state.userInfo.user_name==null">
+         <router-link to="/Message">
         <img class="tu"
           src="../assets/sige/1.png"
           alt=""
         />
         </router-link>
+        </div> 
+        <div v-else>
+            <router-link to="/Me">
+        <img class="tu"
+          src="../assets/sige/1.png"
+          alt=""
+        />
+        </router-link>
+        </div>
       </div>
       <div slot="right" class="shortcut" v-else>
          <mt-button icon="more"></mt-button>

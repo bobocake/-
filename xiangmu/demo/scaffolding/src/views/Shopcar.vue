@@ -5,7 +5,7 @@
                 <mt-button  icon="back"></mt-button>
             </router-link>
             <div slot="right" class="shortcut" v-if="this.$store.state.isLogined == 1">
-                <span>您好,{{this.$store.state.userInfo.username}}</span>
+                <span>您好,{{this.$store.state.userInfo.uname}}</span>
             </div>
         </mt-header>
         <div class="articleItem">
@@ -21,7 +21,7 @@
               </div>
               <!-- 图像开始  -->
               <div class="articleImg">
-                <img src="../assets/bobo/list_15.jpg" alt="">
+                <img src="../../public/img/product/1.jpg" alt="">
               </div>
               <!-- 图像结束 -->
             <div>
@@ -75,16 +75,16 @@ export default {
         return{              
     productList:[
     {
-      'proNames':'【人气爆棚】',
-     'proName' :'草莓格格蛋糕',
+      'proNames':'【鲜奶蛋糕】',
+     'proName' :'往后余生相濡以沫',
      'proNum' : 1,
-     'proPrice' :46,
+     'proPrice' :199.00,
     },
     {
-      'proNames':'【人气爆棚】',
-     'proName' :'爆浆蓝莓蛋糕',
+      'proNames':'【水果蛋糕】',
+     'proName' :'蜜桃星球',
      'proNum' : 1,
-     'proPrice' :58,
+     'proPrice' :67.00,
     },
    ]}
    },

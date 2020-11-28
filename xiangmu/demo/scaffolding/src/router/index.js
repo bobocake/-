@@ -11,6 +11,8 @@ import Shopcar from '../views/Shopcar.vue';
 import Message from '../views/Message.vue';
 import ProductDetail from '../views/ProductDetail.vue';
 import Settlement from '../views/Settlement.vue';
+import Me from '../views/Me.vue';
+
 
 
 Vue.use(VueRouter)
@@ -24,8 +26,12 @@ const routes = [
     component:Settlement
   },
   {
-    path:'/productdetail',
+    path:'/productdetail/:lid',
     component:ProductDetail
+  },
+  {
+    path:'/me',
+    component:Me
   },
   {
     path:'/register',
@@ -63,7 +69,7 @@ const routes = [
 
 const router = new VueRouter({
   mode: 'history',
-  base: process.env.BASE_URL,
+  // base: process.env.BASE_URL,
   routes
 })
 

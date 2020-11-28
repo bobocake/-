@@ -31,23 +31,23 @@
               <div class="articleItem-wrapper">
                 <!-- 图像开始  -->
                 <div class="articleImg">
-                  <img src="../assets/bobo/list_15.jpg" alt="">
+                  <img src="../../public/img/product/1.jpg" alt="">
                 </div>
                 <!-- 图像结束 -->
                 <div>
                   <!-- 简介开始 -->
                   <div class="articleDes">
-                    【人气爆棚】
+                    【鲜奶蛋糕】
                   </div>
                   <div class="articleDes">
-                    草莓格格蛋糕
+                    往后余生相濡以沫
                   </div>
                   <!-- 简介结束 -->
                   <div class="q">
-                    ￥46.00
+                    ￥199.00
                   </div>
                   <div class="btn">
-                    <router-link to="/productdetail">
+                    <router-link to="/productdetail/1">
                      再次购买
                     </router-link>
                   </div>

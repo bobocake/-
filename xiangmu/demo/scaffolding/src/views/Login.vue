@@ -56,7 +56,7 @@ export default {
       if(this.checkUsername() && this.checkPassword()){
         let str = 'username=' + this.username + '&password=' + this.password;
         this.$store.dispatch('login_actions',str);
-        
+        console.log(str)
         //现在要发送相关的用户名、密码到WEB服务器
         // this.axios.post('/login','username=' + this.username + '&password=' + this.password).then(res=>{
         //     //代表用户登录成功
@@ -68,7 +68,7 @@ export default {
         //     } else {
         //       //this.username ='';
         //       //this.password='';
-        //       this.$messagebox('登录提示','用户名或密码错误');
+
         //     }
         // });
       }
